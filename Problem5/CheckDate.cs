@@ -56,17 +56,41 @@ namespace Problem5
                     Console.WriteLine((Months30)month + " does not have {0} days",day);
                     return false;
                 }
+
                 if (day > 29 && (month == (int) Months30.February)) // February having 30 days...
                 {
                     Console.WriteLine((Months30)month + " does not have {0} days",day);
                     return false;
                 }
+                
                 return true;
             }
             Console.WriteLine("Invalid Day or Month");
             return false;
         }
 
-        
+        public bool validDate(int month, int day, int year)
+        {
+            if (day == 29 && month == (int)Months30.February && !isLeap(year))
+            {
+                Console.WriteLine("{0} doesn't have {1} days in {2}",(Months30)month,day,year);
+                return false;
+            }
+            if (validDayAndMonth(day, month) && validYearRange(year))
+            {
+                Console.WriteLine("{0} {1}, {2} is valid",
+                    Enum.IsDefined(typeof(Months30),month) ? 
+                    Enum.GetName(typeof(Months30),month) : 
+                    Enum.GetName(typeof(Months31),month),
+                    day, year);
+                return true;
+            }
+            Console.WriteLine("{0} doesn't have {1} days OR {2} is not between the 1800-2020 range", 
+                Enum.IsDefined(typeof(Months30), month) ? 
+                Enum.GetName(typeof(Months30), month) : 
+                Enum.GetName(typeof(Months31), month),
+                day, year);
+            return false;
+        }
     }
 }

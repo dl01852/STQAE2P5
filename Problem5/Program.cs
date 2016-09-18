@@ -12,7 +12,7 @@ namespace Problem5
         {
             CheckDate date = new CheckDate();
 
-            Console.WriteLine(date.validMonth(15));
+            date.validDate(29, 4, 2100);
           
         }
     }
